@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ALANA ELECTRONICS Easy 8 · Guía de pinout del conector de 56 pines</title>
+<meta name="description" content="Guía de pinout del conector de 56 pines de la ECU ALANA ELECTRONICS Easy 8 v1.0: entradas, inyectores, ignitors, stepper, CAN, sonda lambda y alimentación, con explicaciones.">
+<link rel="canonical" href="https://gunter443.github.io/alana-easy8/">
+<meta property="og:url" content="https://gunter443.github.io/alana-easy8/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ALANA ELECTRONICS Easy 8 · Guía de pinout del conector de 56 pines">
+<meta property="og:description" content="Guía de pinout del conector de 56 pines de la ECU ALANA ELECTRONICS Easy 8 v1.0: entradas, inyectores, ignitors, stepper, CAN, sonda lambda y alimentación, con explicaciones.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f3d2e'/%3E%3Crect x='3' y='3' width='26' height='26' rx='5' fill='none' stroke='%23d79a5c' stroke-width='1.5'/%3E%3Ctext x='16' y='21.5' font-family='Arial,Helvetica,sans-serif' font-size='13' font-weight='700' text-anchor='middle' fill='%23d79a5c'%3EE8%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: banda de cabecera verde de placa con cobre; debajo, apartados desplegables con la tabla y las explicaciones. El color de cada fila indica su familia de señal. */
+:root {
+  --bg: #f3f6f4;
+  --surface: #ffffff;
+  --ink: #12201a;
+  --muted: #56675e;
+  --line: #d6dfda;
+  --stripe: #f7faf8;
+  --accent: #9a5524;
+  --pcb: #0f3d2e;
+  --pcb-ink: #eef4f0;
+  --pcb-muted: #a9c4b8;
+  --copper: #d79a5c;
+  --copper-ink: #2a1708;
+  --warn-bg: #fff7e3; --warn-line: #d9a21b;
+  --in-b: #E6F1FB; --in-t: #0C447C; --in-l: #378ADD;
+  --hc-b: #FAEEDA; --hc-t: #633806; --hc-l: #BA7517;
+  --ig-b: #FCEBEB; --ig-t: #791F1F; --ig-l: #E24B4A;
+  --lc-b: #E1F5EE; --lc-t: #085041; --lc-l: #1D9E75;
+  --ls-b: #EEEDFE; --ls-t: #3C3489; --ls-l: #7F77DD;
+  --pw-b: #F1EFE8; --pw-t: #444441; --pw-l: #888780;
+  --font-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c1411; --surface: #121c18; --ink: #e5eee9; --muted: #95a89e; --line: #24342c; --stripe: #15211c;
+    --accent: #e3a56b; --pcb: #0d3628;
+    --warn-bg: #2a2412; --warn-line: #b98a1c;
+    --in-b: #0C447C; --in-t: #B5D4F4; --in-l: #85B7EB;
+    --hc-b: #633806; --hc-t: #FAC775; --hc-l: #EF9F27;
+    --ig-b: #791F1F; --ig-t: #F7C1C1; --ig-l: #F09595;
+    --lc-b: #085041; --lc-t: #9FE1CB; --lc-l: #5DCAA5;
+    --ls-b: #3C3489; --ls-t: #CECBF6; --ls-l: #AFA9EC;
+    --pw-b: #444441; --pw-t: #D3D1C7; --pw-l: #B4B2A9;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c1411; --surface: #121c18; --ink: #e5eee9; --muted: #95a89e; --line: #24342c; --stripe: #15211c;
+  --accent: #e3a56b; --pcb: #0d3628;
+  --warn-bg: #2a2412; --warn-line: #b98a1c;
+  --in-b: #0C447C; --in-t: #B5D4F4; --in-l: #85B7EB;
+  --hc-b: #633806; --hc-t: #FAC775; --hc-l: #EF9F27;
+  --ig-b: #791F1F; --ig-t: #F7C1C1; --ig-l: #F09595;
+  --lc-b: #085041; --lc-t: #9FE1CB; --lc-l: #5DCAA5;
+  --ls-b: #3C3489; --ls-t: #CECBF6; --ls-l: #AFA9EC;
+  --pw-b: #444441; --pw-t: #D3D1C7; --pw-l: #B4B2A9;
+  color-scheme: dark;
+}
+
+.f-in { --fb: var(--in-b); --ft: var(--in-t); --fl: var(--in-l); }
+.f-hc { --fb: var(--hc-b); --ft: var(--hc-t); --fl: var(--hc-l); }
+.f-ig { --fb: var(--ig-b); --ft: var(--ig-t); --fl: var(--ig-l); }
+.f-lc { --fb: var(--lc-b); --ft: var(--lc-t); --fl: var(--lc-l); }
+.f-ls { --fb: var(--ls-b); --ft: var(--ls-t); --fl: var(--ls-l); }
+.f-pw { --fb: var(--pw-b); --ft: var(--pw-t); --fl: var(--pw-l); }
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+}
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---------- Cabecera ---------- */
+.hero { position: relative; overflow: hidden; background: var(--pcb); color: var(--pcb-ink); border-bottom: 3px solid var(--copper); }
+.hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .4;
+  background-image: radial-gradient(circle, var(--copper) 1.6px, transparent 2.3px);
+  background-size: 22px 22px;
+  -webkit-mask-image: linear-gradient(90deg, transparent 40%, #000 100%);
+  mask-image: linear-gradient(90deg, transparent 40%, #000 100%);
+}
+.hero-in { position: relative; max-width: 1040px; margin: 0 auto; padding: 36px 16px 28px; display: flex; flex-direction: column; gap: 10px; }
+.hero h1 { margin: 0; display: flex; flex-direction: column; gap: 8px; font-weight: 400; }
+.brand { font: 600 13px/1.2 var(--font-mono); letter-spacing: .18em; color: var(--copper); }
+.model-row { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; }
+.model { font: 600 clamp(52px, 11vw, 80px)/.92 var(--font-display); letter-spacing: .005em; color: var(--pcb-ink); }
+.ver { font: 600 13px/1 var(--font-mono); padding: 7px 10px; border-radius: 6px; background: var(--copper); color: var(--copper-ink); }
+.hero-sub { margin: 0; font-size: 17px; color: var(--pcb-muted); }
+.specs {
+  display: flex; flex-wrap: wrap; gap: 12px 32px; margin: 14px 0 0; padding-top: 16px;
+  border-top: 1px solid color-mix(in srgb, var(--copper) 40%, transparent);
+}
+.specs div { display: flex; flex-direction: column-reverse; gap: 2px; }
+.specs dd { margin: 0; font: 600 34px/1 var(--font-display); color: var(--copper); font-variant-numeric: tabular-nums; }
+.specs dt { font-size: 13px; color: var(--pcb-muted); }
+.hero-extra { margin: 0; font-size: 13px; color: var(--pcb-muted); }
+
+.wrap { max-width: 1040px; margin: 0 auto; padding: 20px 16px 56px; }
+.lead { margin: 0 0 16px; color: var(--muted); max-width: 66ch; }
+
+/* ---------- Barra de apartados ---------- */
+.bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin: 0 0 12px; }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a {
+  display: inline-flex; align-items: center; height: 34px; padding: 0 14px;
+  font: 500 13px/1 var(--font-body); color: var(--ink); text-decoration: none;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
+}
+.toc a:hover { border-color: var(--muted); }
+.bar-actions { display: flex; gap: 8px; }
+.act {
+  height: 34px; padding: 0 14px;
+  font: 500 13px/1 var(--font-body); color: var(--accent);
+  background: transparent; border: 1px solid var(--line); border-radius: 8px; cursor: pointer;
+}
+.act:hover { border-color: var(--accent); }
+
+/* ---------- Apartados desplegables ---------- */
+details.doc { border-bottom: 1px solid var(--line); scroll-margin-top: 16px; }
+details.doc:first-of-type { border-top: 1px solid var(--line); }
+details.doc > summary {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 6px 14px;
+  padding: 18px 2px; list-style: none; cursor: pointer;
+}
+details.doc > summary::-webkit-details-marker { display: none; }
+details.doc > summary h2 { margin: 0; font: 600 27px/1.1 var(--font-display); letter-spacing: .01em; text-wrap: balance; }
+details.doc > summary:hover h2 { color: var(--accent); }
+.meta { font: 500 12px/1.4 var(--font-mono); color: var(--muted); }
+.meta-warn { padding: 3px 10px; color: var(--ink); background: var(--warn-bg); border: 1px solid var(--warn-line); border-radius: 999px; }
+.chev {
+  flex: none; margin-left: auto; width: 9px; height: 9px;
+  border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted);
+  transform: translateY(-2px) rotate(45deg);
+}
+details[open] > summary .chev { transform: translateY(2px) rotate(-135deg); }
+.doc-body { padding: 0 0 32px; }
+
+/* ---------- Filtros ---------- */
+.tools-sticky { display: flex; flex-direction: column; gap: 12px; padding-bottom: 8px; }
+.search { position: relative; max-width: 420px; }
+.search label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.search input {
+  width: 100%; height: 42px; padding: 0 14px 0 40px;
+  font: inherit; color: var(--ink); background: var(--surface);
+  border: 1px solid var(--line); border-radius: 8px;
+}
+.search input::placeholder { color: var(--muted); }
+.search input:focus-visible { outline-offset: 0; }
+.search svg { position: absolute; left: 13px; top: 12px; width: 18px; height: 18px; stroke: var(--muted); fill: none; stroke-width: 2; stroke-linecap: round; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 34px; padding: 0 12px;
+  font: 500 13px/1 var(--font-body); color: var(--ink);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
+  cursor: pointer;
+}
+.chip:hover { border-color: var(--muted); }
+.chip .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--fl); }
+.chip-n { font-family: var(--font-mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.chip[aria-pressed="true"] { background: var(--pcb); border-color: var(--pcb); color: var(--pcb-ink); }
+.chip[aria-pressed="true"] .chip-n { color: var(--pcb-muted); }
+.status { margin: 0; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* ---------- Tablas ---------- */
+.table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+table { width: 100%; min-width: 620px; border-collapse: collapse; }
+thead th {
+  padding: 11px 14px; text-align: left; white-space: nowrap;
+  font: 600 12px/1.2 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted);
+  background: var(--surface); border-bottom: 1px solid var(--line);
+}
+tbody td { padding: 9px 14px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr:nth-child(even) td { background: var(--stripe); }
+tbody tr:hover td { background: color-mix(in srgb, var(--accent) 8%, var(--surface)); }
+tbody tr.flash td { background: color-mix(in srgb, var(--accent) 24%, var(--surface)); }
+tr[hidden] { display: none; }
+
+td.pin {
+  width: 64px; text-align: right;
+  font: 600 14px/1 var(--font-mono); font-variant-numeric: tabular-nums;
+  border-left: 4px solid var(--fl);
+}
+#pinout thead th:first-child { text-align: right; }
+td.name { font: 500 14px/1.2 var(--font-mono); white-space: nowrap; }
+td.desc .none { color: var(--muted); }
+.pill {
+  display: inline-block; padding: 3px 10px; border-radius: 999px; white-space: nowrap;
+  font: 500 12.5px/1.4 var(--font-mono);
+  color: var(--ft); background: var(--fb);
+}
+.empty { display: none; padding: 32px 16px; text-align: center; color: var(--muted); }
+.empty.show { display: block; }
+
+/* ---------- Explicaciones ---------- */
+.doc .intro { margin: 0 0 16px; color: var(--muted); max-width: 66ch; }
+.doc h3 { margin: 0 0 8px; font-size: 15px; line-height: 1.3; font-weight: 600; }
+.doc h3.sub { margin-top: 32px; }
+.notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-bottom: 8px; }
+.note-box { padding: 18px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+.note-box p { margin: 0 0 10px; }
+.note-box p:last-child { margin-bottom: 0; }
+.small { font-size: 13px; color: var(--muted); }
+.decode { display: grid; grid-template-columns: max-content 1fr; gap: 6px 14px; margin: 0 0 12px; }
+.decode dt { font: 600 13px/1.5 var(--font-mono); }
+.decode dd { margin: 0; }
+
+.plain tbody tr:nth-child(even) td { background: transparent; }
+.plain tbody tr:hover td { background: color-mix(in srgb, var(--accent) 8%, var(--surface)); }
+table.t-sm { min-width: 520px; }
+table.t-fn { min-width: 560px; }
+table.t-ch { min-width: 420px; }
+td.ty { width: 1%; white-space: nowrap; border-left: 4px solid var(--fl); }
+td.pins { white-space: normal; color: var(--muted); }
+td.chan { width: 1%; font: 600 14px/1 var(--font-mono); font-variant-numeric: tabular-nums; }
+td.note { color: var(--muted); font-size: 14px; }
+span.name { font: 500 14px/1.2 var(--font-mono); color: var(--muted); }
+tbody tr.grp th {
+  padding: 10px 14px; text-align: left;
+  font: 600 12px/1.2 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted);
+  background: var(--stripe); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+tbody tr.grp:first-child th { border-top: 0; }
+.gsub { margin-left: 8px; font-weight: 400; letter-spacing: 0; text-transform: none; }
+
+.pinlink {
+  display: inline-flex; align-items: center; gap: 6px;
+  min-width: 44px; height: 26px; padding: 0 8px;
+  font: 600 13px/1 var(--font-mono); font-variant-numeric: tabular-nums; color: var(--accent);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 6px; cursor: pointer;
+}
+.pinlink::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--fl); }
+.pinlink:hover { border-color: var(--accent); }
+
+.facts { margin: 16px 0 0; padding-left: 20px; max-width: 70ch; }
+.facts li { margin-bottom: 6px; }
+.warn { padding: 18px 20px; border: 1px solid var(--warn-line); border-left-width: 4px; border-radius: 10px; background: var(--warn-bg); }
+.warn p { margin: 0 0 10px; }
+.warn ol { margin: 0; padding-left: 20px; max-width: 74ch; }
+.warn li { margin-bottom: 8px; }
+.warn li:last-child { margin-bottom: 0; }
+.foot { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+.foot p { margin: 0 0 6px; max-width: 80ch; }
+
+/* ---------- Escritorio: filtros fijos al bajar ---------- */
+@media (min-width: 700px) {
+  .tools-sticky { position: sticky; top: 0; z-index: 3; background: var(--bg); padding-top: 12px; margin-top: -12px; }
+}
+
+/* ---------- Móvil: la tabla de pines pasa a tarjetas ---------- */
+@media (max-width: 600px) {
+  .hero-in { padding-top: 28px; }
+  .specs { gap: 12px 22px; }
+  .specs dd { font-size: 28px; }
+  #pinout { min-width: 0; }
+  #pinout, #pinout tbody { display: block; }
+  #pinout thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  #pinout tbody tr {
+    display: grid; grid-template-columns: 52px minmax(0, 1fr); grid-template-rows: auto auto auto;
+    column-gap: 10px; row-gap: 5px; padding: 12px 14px 12px 10px;
+    border-bottom: 1px solid var(--line); border-left: 4px solid var(--fl);
+  }
+  #pinout tbody tr:last-child { border-bottom: 0; }
+  #pinout tbody tr:nth-child(even) { background: var(--stripe); }
+  #pinout tbody tr.flash { background: color-mix(in srgb, var(--accent) 24%, var(--surface)); }
+  #pinout tbody tr[hidden] { display: none; }
+  #pinout tbody tr td { display: block; padding: 0; border: 0; background: transparent; }
+  #pinout td.pin { grid-row: 1 / span 3; width: auto; text-align: left; border-left: 0; font-size: 22px; padding-top: 2px; }
+  #pinout td.desc { font-size: 14px; }
+  #pinout td.desc.is-empty { display: none; }
+  tbody td { padding: 8px 10px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .chip, tbody td { transition: background-color .12s, border-color .12s; }
+  .chev { transition: transform .15s; }
+}
+
+/* ---------- Impresión ---------- */
+@media print {
+  html:not(#p) {
+    --bg: #ffffff; --surface: #ffffff; --ink: #000000; --muted: #444444; --line: #bbbbbb; --stripe: #f4f4f4; --accent: #000000;
+    --in-b: #E6F1FB; --in-t: #0C447C; --in-l: #378ADD;
+    --hc-b: #FAEEDA; --hc-t: #633806; --hc-l: #BA7517;
+    --ig-b: #FCEBEB; --ig-t: #791F1F; --ig-l: #E24B4A;
+    --lc-b: #E1F5EE; --lc-t: #085041; --lc-l: #1D9E75;
+    --ls-b: #EEEDFE; --ls-t: #3C3489; --ls-l: #7F77DD;
+    --pw-b: #F1EFE8; --pw-t: #444441; --pw-l: #888780;
+    --warn-bg: #ffffff; --warn-line: #000000;
+    color-scheme: light;
+  }
+  body { font-size: 10.5pt; }
+  .bar, .lead, .tools-sticky, .chev, .empty, .hero::before { display: none !important; }
+  .hero { background: none; color: #000; border-bottom: 2px solid #000; }
+  .hero-in { padding: 0 0 12px; }
+  .brand, .model, .hero-sub, .specs dd, .specs dt, .hero-extra { color: #000; }
+  .ver { background: none; border: 1px solid #000; color: #000; }
+  .specs { border-top-color: #999; }
+  .wrap { max-width: none; padding: 0; }
+  .table-wrap { overflow: visible; }
+  table { min-width: 0 !important; }
+  .pill, td.pin, td.ty, .pinlink::before { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .pinlink { border: 0; padding: 0; min-width: 0; height: auto; color: #000; }
+  tr { break-inside: avoid; }
+  details.doc > summary { padding: 14px 0 8px; }
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-in">
+    <h1><span class="brand">ALANA ELECTRONICS</span><span class="model-row"><span class="model">Easy 8</span><span class="ver">ECU v1.0</span></span></h1>
+    <p class="hero-sub">Guía de pinout del conector de 56 pines</p>
+    <dl class="specs">
+<div><dt>Inyectores</dt><dd>8</dd></div>
+<div><dt>Ignitors</dt><dd>8</dd></div>
+<div><dt>Entradas analógicas</dt><dd>8</dd></div>
+<div><dt>Entradas digitales</dt><dd>3</dd></div>
+<div><dt>Captadores VR</dt><dd>2</dd></div>
+    </dl>
+    <p class="hero-extra">Controlador lambda integrado · CAN bus · Motor paso a paso</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <p class="lead">Filtra por familia o busca por número, nombre o descripción. Pulsa el título de cada apartado para abrirlo o cerrarlo.</p>
+
+  <nav class="bar" aria-label="Apartados">
+    <div class="toc">
+      <a href="#tabla">Tabla de pines</a>
+      <a href="#leer">Cómo leer la tabla</a>
+      <a href="#funciones">Qué hace cada pin</a>
+      <a href="#lambda">Sonda lambda</a>
+      <a href="#alimentacion">Alimentación y masas</a>
+      <a href="#comprobar">A comprobar</a>
+    </div>
+    <div class="bar-actions">
+      <button type="button" class="act" id="open-all">Abrir todo</button>
+      <button type="button" class="act" id="close-all">Cerrar todo</button>
+    </div>
+  </nav>
+
+  <details class="doc" id="tabla" open>
+    <summary><h2>Tabla de pines</h2><span class="meta">56 pines · 6 familias</span><span class="chev" aria-hidden="true"></span></summary>
+    <div class="doc-body">
+      <div class="tools-sticky">
+        <div class="search">
+          <label for="q">Buscar pin</label>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <input id="q" type="search" placeholder="Buscar: 16, HCLSO, 5V, diodo…" autocomplete="off">
+        </div>
+        <div class="chips" id="chips" role="group" aria-label="Familia de señal">
+<button type="button" class="chip" data-filter="" aria-pressed="true"><span class="chip-label">Todos</span><span class="chip-n">56</span></button>
+<button type="button" class="chip f-in" data-filter="in" aria-pressed="false"><span class="dot" aria-hidden="true"></span><span class="chip-label">Entradas</span><span class="chip-n">15</span></button>
+<button type="button" class="chip f-hc" data-filter="hc" aria-pressed="false"><span class="dot" aria-hidden="true"></span><span class="chip-label">Alta corriente</span><span class="chip-n">13</span></button>
+<button type="button" class="chip f-ig" data-filter="ig" aria-pressed="false"><span class="dot" aria-hidden="true"></span><span class="chip-label">Ignición</span><span class="chip-n">8</span></button>
+<button type="button" class="chip f-lc" data-filter="lc" aria-pressed="false"><span class="dot" aria-hidden="true"></span><span class="chip-label">Baja corriente y stepper</span><span class="chip-n">8</span></button>
+<button type="button" class="chip f-ls" data-filter="ls" aria-pressed="false"><span class="dot" aria-hidden="true"></span><span class="chip-label">Lambda y CAN</span><span class="chip-n">6</span></button>
+<button type="button" class="chip f-pw" data-filter="pw" aria-pressed="false"><span class="dot" aria-hidden="true"></span><span class="chip-label">Alimentación</span><span class="chip-n">6</span></button>
+        </div>
+        <p class="status" id="status" aria-live="polite">Mostrando 56 de 56 pines</p>
+      </div>
+
+      <div class="table-wrap">
+        <table id="pinout">
+          <thead>
+            <tr><th scope="col">Nº Pin</th><th scope="col">Nombre Easy 8</th><th scope="col">Tipo</th><th scope="col">Descripción</th></tr>
+          </thead>
+          <tbody id="rows">
+<tr class="f-in" data-pin="1" data-f="in" data-q="1 ain_1 analog-in  entradas"><td class="pin">1</td><td class="name">AIN_1</td><td><span class="pill">Analog-In</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-in" data-pin="2" data-f="in" data-q="2 ain_2 analog-in mayor impedancia entradas"><td class="pin">2</td><td class="name">AIN_2</td><td><span class="pill">Analog-In</span></td><td class="desc">Mayor impedancia</td></tr>
+<tr class="f-in" data-pin="3" data-f="in" data-q="3 ain_3 analog-in pullup a 5v entradas"><td class="pin">3</td><td class="name">AIN_3</td><td><span class="pill">Analog-In</span></td><td class="desc">PullUp a 5V</td></tr>
+<tr class="f-in" data-pin="4" data-f="in" data-q="4 ain_4 analog-in pullup a 5v entradas"><td class="pin">4</td><td class="name">AIN_4</td><td><span class="pill">Analog-In</span></td><td class="desc">PullUp a 5V</td></tr>
+<tr class="f-in" data-pin="5" data-f="in" data-q="5 din_3 digital-hall  entradas"><td class="pin">5</td><td class="name">DIN_3</td><td><span class="pill">Digital-Hall</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-in" data-pin="6" data-f="in" data-q="6 vr1+ analog-hall trigger entradas"><td class="pin">6</td><td class="name">VR1+</td><td><span class="pill">Analog-Hall</span></td><td class="desc">Trigger</td></tr>
+<tr class="f-in" data-pin="7" data-f="in" data-q="7 vr1- analog-hall  entradas"><td class="pin">7</td><td class="name">VR1-</td><td><span class="pill">Analog-Hall</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-ls" data-pin="8" data-f="ls" data-q="8 canl can-bus  lambda y can"><td class="pin">8</td><td class="name">CANL</td><td><span class="pill">Can-bus</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-pw" data-pin="9" data-f="pw" data-q="9 power out power 5v sensors alimentación"><td class="pin">9</td><td class="name">POWER OUT</td><td><span class="pill">POWER</span></td><td class="desc">5V sensors</td></tr>
+<tr class="f-ls" data-pin="10" data-f="ls" data-q="10 lsu_rtrim lsu  lambda y can"><td class="pin">10</td><td class="name">LSU_RTRIM</td><td><span class="pill">LSU</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-ls" data-pin="11" data-f="ls" data-q="11 lsu_vm lsu  lambda y can"><td class="pin">11</td><td class="name">LSU_VM</td><td><span class="pill">LSU</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-lc" data-pin="12" data-f="lc" data-q="12 step_1b stepper  baja corriente y stepper"><td class="pin">12</td><td class="name">STEP_1B</td><td><span class="pill">Stepper</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-lc" data-pin="13" data-f="lc" data-q="13 step_2a stepper  baja corriente y stepper"><td class="pin">13</td><td class="name">STEP_2A</td><td><span class="pill">Stepper</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-hc" data-pin="14" data-f="hc" data-q="14 lsu_heater low-side-hi-curr+d  alta corriente"><td class="pin">14</td><td class="name">LSU_HEATER</td><td><span class="pill">Low-Side-Hi-Curr+D</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-pw" data-pin="15" data-f="pw" data-q="15 power in power +12v alimentación"><td class="pin">15</td><td class="name">POWER IN</td><td><span class="pill">POWER</span></td><td class="desc">+12V</td></tr>
+<tr class="f-hc" data-pin="16" data-f="hc" data-q="16 hclso_1 low-side-hi-curr+d salida alta corriente max 19a, diodo schottky alta corriente"><td class="pin">16</td><td class="name">HCLSO_1</td><td><span class="pill">Low-Side-Hi-Curr+D</span></td><td class="desc">Salida alta corriente Max 19A, diodo Schottky</td></tr>
+<tr class="f-hc" data-pin="17" data-f="hc" data-q="17 hclso_2 low-side-hi-curr+d salida alta corriente max 19a, diodo schottky alta corriente"><td class="pin">17</td><td class="name">HCLSO_2</td><td><span class="pill">Low-Side-Hi-Curr+D</span></td><td class="desc">Salida alta corriente Max 19A, diodo Schottky</td></tr>
+<tr class="f-hc" data-pin="18" data-f="hc" data-q="18 hclso_3 low-side-hi-curr+d salida alta corriente max 19a alta corriente"><td class="pin">18</td><td class="name">HCLSO_3</td><td><span class="pill">Low-Side-Hi-Curr+D</span></td><td class="desc">Salida alta corriente Max 19A</td></tr>
+<tr class="f-hc" data-pin="19" data-f="hc" data-q="19 hclso_4 low-side-hi-curr+d salida alta corriente max 19a alta corriente"><td class="pin">19</td><td class="name">HCLSO_4</td><td><span class="pill">Low-Side-Hi-Curr+D</span></td><td class="desc">Salida alta corriente Max 19A</td></tr>
+<tr class="f-hc" data-pin="20" data-f="hc" data-q="20 hclsoi_8 low-side-hi-curr salida alta corriente max 19a, sin diodo flyback alta corriente"><td class="pin">20</td><td class="name">HCLSOI_8</td><td><span class="pill">Low-Side-Hi-Curr</span></td><td class="desc">Salida alta corriente Max 19A, sin diodo flyback</td></tr>
+<tr class="f-hc" data-pin="21" data-f="hc" data-q="21 hclsoi_7 low-side-hi-curr salida alta corriente max 19a, sin diodo flyback alta corriente"><td class="pin">21</td><td class="name">HCLSOI_7</td><td><span class="pill">Low-Side-Hi-Curr</span></td><td class="desc">Salida alta corriente Max 19A, sin diodo flyback</td></tr>
+<tr class="f-pw" data-pin="22" data-f="pw" data-q="22 power gnd power  alimentación"><td class="pin">22</td><td class="name">POWER GND</td><td><span class="pill">POWER</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-hc" data-pin="23" data-f="hc" data-q="23 hclsoi_6 low-side-hi-curr salida alta corriente max 19a, sin diodo flyback alta corriente"><td class="pin">23</td><td class="name">HCLSOI_6</td><td><span class="pill">Low-Side-Hi-Curr</span></td><td class="desc">Salida alta corriente Max 19A, sin diodo flyback</td></tr>
+<tr class="f-hc" data-pin="24" data-f="hc" data-q="24 hclsoi_5 low-side-hi-curr salida alta corriente max 19a, sin diodo flyback alta corriente"><td class="pin">24</td><td class="name">HCLSOI_5</td><td><span class="pill">Low-Side-Hi-Curr</span></td><td class="desc">Salida alta corriente Max 19A, sin diodo flyback</td></tr>
+<tr class="f-hc" data-pin="25" data-f="hc" data-q="25 hclsoi_4 low-side-hi-curr salida alta corriente max 19a, sin diodo flyback alta corriente"><td class="pin">25</td><td class="name">HCLSOI_4</td><td><span class="pill">Low-Side-Hi-Curr</span></td><td class="desc">Salida alta corriente Max 19A, sin diodo flyback</td></tr>
+<tr class="f-hc" data-pin="26" data-f="hc" data-q="26 hclsoi_3 low-side-hi-curr salida alta corriente max 19a, sin diodo flyback alta corriente"><td class="pin">26</td><td class="name">HCLSOI_3</td><td><span class="pill">Low-Side-Hi-Curr</span></td><td class="desc">Salida alta corriente Max 19A, sin diodo flyback</td></tr>
+<tr class="f-hc" data-pin="27" data-f="hc" data-q="27 hclsoi_2 low-side-hi-curr salida alta corriente max 19a, sin diodo flyback alta corriente"><td class="pin">27</td><td class="name">HCLSOI_2</td><td><span class="pill">Low-Side-Hi-Curr</span></td><td class="desc">Salida alta corriente Max 19A, sin diodo flyback</td></tr>
+<tr class="f-hc" data-pin="28" data-f="hc" data-q="28 hclsoi_1 low-side-hi-curr salida alta corriente max 19a, sin diodo flyback alta corriente"><td class="pin">28</td><td class="name">HCLSOI_1</td><td><span class="pill">Low-Side-Hi-Curr</span></td><td class="desc">Salida alta corriente Max 19A, sin diodo flyback</td></tr>
+<tr class="f-in" data-pin="29" data-f="in" data-q="29 ain_5 analog-in  entradas"><td class="pin">29</td><td class="name">AIN_5</td><td><span class="pill">Analog-In</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-in" data-pin="30" data-f="in" data-q="30 ain_6 analog-in  entradas"><td class="pin">30</td><td class="name">AIN_6</td><td><span class="pill">Analog-In</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-in" data-pin="31" data-f="in" data-q="31 ain_7 analog-in  entradas"><td class="pin">31</td><td class="name">AIN_7</td><td><span class="pill">Analog-In</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-in" data-pin="32" data-f="in" data-q="32 ain_8 analog-in  entradas"><td class="pin">32</td><td class="name">AIN_8</td><td><span class="pill">Analog-In</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-in" data-pin="33" data-f="in" data-q="33 vr2+ analog-hall trigger entradas"><td class="pin">33</td><td class="name">VR2+</td><td><span class="pill">Analog-Hall</span></td><td class="desc">Trigger</td></tr>
+<tr class="f-in" data-pin="34" data-f="in" data-q="34 vr2- analog-hall  entradas"><td class="pin">34</td><td class="name">VR2-</td><td><span class="pill">Analog-Hall</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-in" data-pin="35" data-f="in" data-q="35 din_2 digital-hall  entradas"><td class="pin">35</td><td class="name">DIN_2</td><td><span class="pill">Digital-Hall</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-ls" data-pin="36" data-f="ls" data-q="36 canh can-bus  lambda y can"><td class="pin">36</td><td class="name">CANH</td><td><span class="pill">Can-bus</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-pw" data-pin="37" data-f="pw" data-q="37 signal gnd power  alimentación"><td class="pin">37</td><td class="name">SIGNAL GND</td><td><span class="pill">POWER</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-ls" data-pin="38" data-f="ls" data-q="38 lsu_ip lsu  lambda y can"><td class="pin">38</td><td class="name">LSU_IP</td><td><span class="pill">LSU</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-ls" data-pin="39" data-f="ls" data-q="39 lsu_un lsu  lambda y can"><td class="pin">39</td><td class="name">LSU_UN</td><td><span class="pill">LSU</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-lc" data-pin="40" data-f="lc" data-q="40 step_1a stepper  baja corriente y stepper"><td class="pin">40</td><td class="name">STEP_1A</td><td><span class="pill">Stepper</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-lc" data-pin="41" data-f="lc" data-q="41 step_2b stepper  baja corriente y stepper"><td class="pin">41</td><td class="name">STEP_2B</td><td><span class="pill">Stepper</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-in" data-pin="42" data-f="in" data-q="42 din_1 digital-in  entradas"><td class="pin">42</td><td class="name">DIN_1</td><td><span class="pill">Digital-In</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-pw" data-pin="43" data-f="pw" data-q="43 ignitors to 12v power  alimentación"><td class="pin">43</td><td class="name">IGNITORS TO 12V</td><td><span class="pill">POWER</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-lc" data-pin="44" data-f="lc" data-q="44 lclso_3 low-side-low-curr+d  baja corriente y stepper"><td class="pin">44</td><td class="name">LCLSO_3</td><td><span class="pill">Low-Side-Low-Curr+D</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-lc" data-pin="45" data-f="lc" data-q="45 lclso_4 low-side-low-curr+d  baja corriente y stepper"><td class="pin">45</td><td class="name">LCLSO_4</td><td><span class="pill">Low-Side-Low-Curr+D</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-lc" data-pin="46" data-f="lc" data-q="46 lclso_1 low-side-low-curr+d  baja corriente y stepper"><td class="pin">46</td><td class="name">LCLSO_1</td><td><span class="pill">Low-Side-Low-Curr+D</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-lc" data-pin="47" data-f="lc" data-q="47 lclso_2 low-side-low-curr+d  baja corriente y stepper"><td class="pin">47</td><td class="name">LCLSO_2</td><td><span class="pill">Low-Side-Low-Curr+D</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-ig" data-pin="48" data-f="ig" data-q="48 lchso_8 hi-side-low-curr  ignición"><td class="pin">48</td><td class="name">LCHSO_8</td><td><span class="pill">Hi-Side-Low-Curr</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-ig" data-pin="49" data-f="ig" data-q="49 lchso_7 hi-side-low-curr  ignición"><td class="pin">49</td><td class="name">LCHSO_7</td><td><span class="pill">Hi-Side-Low-Curr</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-pw" data-pin="50" data-f="pw" data-q="50 power gnd power  alimentación"><td class="pin">50</td><td class="name">POWER GND</td><td><span class="pill">POWER</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-ig" data-pin="51" data-f="ig" data-q="51 lchso_6 hi-side-low-curr  ignición"><td class="pin">51</td><td class="name">LCHSO_6</td><td><span class="pill">Hi-Side-Low-Curr</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-ig" data-pin="52" data-f="ig" data-q="52 lchso_5 hi-side-low-curr  ignición"><td class="pin">52</td><td class="name">LCHSO_5</td><td><span class="pill">Hi-Side-Low-Curr</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-ig" data-pin="53" data-f="ig" data-q="53 lchso_4 hi-side-low-curr  ignición"><td class="pin">53</td><td class="name">LCHSO_4</td><td><span class="pill">Hi-Side-Low-Curr</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-ig" data-pin="54" data-f="ig" data-q="54 lchso_3 hi-side-low-curr  ignición"><td class="pin">54</td><td class="name">LCHSO_3</td><td><span class="pill">Hi-Side-Low-Curr</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-ig" data-pin="55" data-f="ig" data-q="55 lchso_2 hi-side-low-curr  ignición"><td class="pin">55</td><td class="name">LCHSO_2</td><td><span class="pill">Hi-Side-Low-Curr</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+<tr class="f-ig" data-pin="56" data-f="ig" data-q="56 lchso_1 hi-side-low-curr  ignición"><td class="pin">56</td><td class="name">LCHSO_1</td><td><span class="pill">Hi-Side-Low-Curr</span></td><td class="desc is-empty"><span class="none">–</span></td></tr>
+          </tbody>
+        </table>
+        <div class="empty" id="empty">Ningún pin coincide con la búsqueda. Prueba con otro término o quita el filtro de familia.</div>
+      </div>
+    </div>
+  </details>
+
+  <details class="doc" id="leer">
+    <summary><h2>Cómo leer la tabla</h2><span class="meta">Nombres, 12 tipos y 6 familias</span><span class="chev" aria-hidden="true"></span></summary>
+    <div class="doc-body">
+    <p class="intro">Los nombres y los tipos siguen un patrón. Entenderlo permite leer cualquier fila sin volver al manual.</p>
+
+    <div class="notes">
+      <div class="note-box">
+        <h3>Qué significan los nombres</h3>
+        <dl class="decode">
+          <dt>AIN, DIN</dt><dd>Entrada analógica y entrada digital.</dd>
+          <dt>HC, LC</dt><dd>Alta corriente (High Current) y baja corriente (Low Current).</dd>
+          <dt>LSO, HSO</dt><dd>Salida low-side y salida high-side.</dd>
+          <dt>VR</dt><dd>Captador de reluctancia variable, con terminales + y −.</dd>
+          <dt>LSU</dt><dd>Señales de la sonda lambda de banda ancha.</dd>
+          <dt>+D</dt><dd>En la columna Tipo, la salida lleva diodo.</dd>
+          <dt>HCLSOI_1 a 8</dt><dd>Las ocho salidas de alta corriente sin diodo, usadas como inyectores.</dd>
+        </dl>
+        <p class="small">Lectura deducida del patrón de nombres y de la columna Tipo.</p>
+      </div>
+      <div class="note-box">
+        <h3>Low-side, high-side y diodo flyback</h3>
+        <p>En una salida <strong>low-side</strong> la carga (inyector, válvula, ventilador) está siempre unida a +12 V y la ECU la activa cerrando el circuito a masa.</p>
+        <p>En una salida <strong>high-side</strong> la ECU entrega el positivo. Aquí es la señal de disparo de cada ignitor.</p>
+        <p>El <strong>diodo flyback</strong> absorbe el pico de tensión que aparece al cortar una carga inductiva, como una bobina o un solenoide. Las salidas marcadas +D lo llevan. Según la tabla, las HCLSOI no.</p>
+      </div>
+    </div>
+
+    <h3 class="sub">Tipos de señal</h3>
+    <p class="intro">Los 12 tipos se agrupan en 6 familias. El color de cada fila de la tabla indica su familia.</p>
+    <div class="table-wrap"><table class="t-sm plain"><thead><tr><th scope="col">Tipo</th><th scope="col">Qué es</th><th scope="col">Pines</th></tr></thead><tbody><tr class="grp"><th scope="rowgroup" colspan="3">Entradas</th></tr>
+<tr class="f-in"><td class="ty"><span class="pill">Analog-In</span></td><td>Entrada analógica de 0 a 5 V con filtro RC y protección contra sobretensión. Para sensores de temperatura, presión y posición.</td><td class="name pins">1–4, 29–32</td></tr>
+<tr class="f-in"><td class="ty"><span class="pill">Analog-Hall</span></td><td>Entrada diferencial (+ y −) para captadores pasivos de reluctancia variable. VR1+ y VR2+ figuran como Trigger.</td><td class="name pins">6–7, 33–34</td></tr>
+<tr class="f-in"><td class="ty"><span class="pill">Digital-In</span></td><td>Entrada digital con lógica de 5 V (nivel CMOS), filtro RC y schmitt-trigger.</td><td class="name pins">42</td></tr>
+<tr class="f-in"><td class="ty"><span class="pill">Digital-Hall</span></td><td>Igual que la entrada digital, pensada para sensores Hall activos.</td><td class="name pins">5, 35</td></tr>
+<tr class="grp"><th scope="rowgroup" colspan="3">Alta corriente</th></tr>
+<tr class="f-hc"><td class="ty"><span class="pill">Low-Side-Hi-Curr</span></td><td>Salida low-side de alta corriente (hasta 19 A) sin diodo flyback. Son las ocho salidas que el manual asigna a inyectores.</td><td class="name pins">20–21, 23–28</td></tr>
+<tr class="f-hc"><td class="ty"><span class="pill">Low-Side-Hi-Curr+D</span></td><td>Salida low-side de alta corriente (hasta 19 A) con diodo. Incluye el calentador de la sonda lambda, boost e idle. En los pines 16 y 17 el diodo es Schottky.</td><td class="name pins">14, 16–19</td></tr>
+<tr class="grp"><th scope="rowgroup" colspan="3">Ignición</th></tr>
+<tr class="f-ig"><td class="ty"><span class="pill">Hi-Side-Low-Curr</span></td><td>Salida high-side de baja corriente (0,2 A según el manual) para disparar los ignitors o smart coils.</td><td class="name pins">48–49, 51–56</td></tr>
+<tr class="grp"><th scope="rowgroup" colspan="3">Baja corriente y stepper</th></tr>
+<tr class="f-lc"><td class="ty"><span class="pill">Low-Side-Low-Curr+D</span></td><td>Salida low-side de baja corriente (hasta 2 A) con MOSFET protegido y diodo flyback. Ventilador, tacómetro, bomba de combustible y una salida digital.</td><td class="name pins">44–47</td></tr>
+<tr class="f-lc"><td class="ty"><span class="pill">Stepper</span></td><td>Cuatro salidas para un motor paso a paso, por ejemplo una válvula de control de aire. Hasta 2 A según el manual.</td><td class="name pins">12–13, 40–41</td></tr>
+<tr class="grp"><th scope="rowgroup" colspan="3">Lambda y CAN</th></tr>
+<tr class="f-ls"><td class="ty"><span class="pill">LSU</span></td><td>Señales del controlador lambda de banda ancha integrado. Se cablean a una sonda de seis hilos.</td><td class="name pins">10–11, 38–39</td></tr>
+<tr class="f-ls"><td class="ty"><span class="pill">Can-bus</span></td><td>Bus CAN para comunicar la ECU con otros sistemas del vehículo. Dos líneas: CANH y CANL.</td><td class="name pins">8, 36</td></tr>
+<tr class="grp"><th scope="rowgroup" colspan="3">Alimentación</th></tr>
+<tr class="f-pw"><td class="ty"><span class="pill">POWER</span></td><td>Alimentación de 12 V, salida de 5 V para sensores y masas.</td><td class="name pins">9, 15, 22, 37, 43, 50</td></tr></tbody></table></div>
+    </div>
+  </details>
+
+  <details class="doc" id="funciones">
+    <summary><h2>Qué hace cada pin</h2><span class="meta">30 funciones · 8 canales</span><span class="chev" aria-hidden="true"></span></summary>
+    <div class="doc-body">
+    <p class="intro">Asignación de funciones según el manual de la Easy 8. Pulsa un número de pin para saltar a su fila en la tabla.</p>
+    <div class="table-wrap"><table class="t-fn plain"><thead><tr><th scope="col">Función</th><th scope="col">Pin</th><th scope="col">Nombre Easy 8</th><th scope="col">Nota</th></tr></thead><tbody><tr class="grp"><th scope="rowgroup" colspan="4">Sensores analógicos <span class="gsub">0 a 5 V</span></th></tr>
+<tr><td>O2 externo, sonda de oxígeno</td><td><button type="button" class="pinlink f-in" data-pin="1" aria-label="Ver el pin 1 en la tabla">1</button></td><td class="name">AIN_1</td><td class="note"></td></tr>
+<tr><td>MAP, presión del colector</td><td><button type="button" class="pinlink f-in" data-pin="2" aria-label="Ver el pin 2 en la tabla">2</button></td><td class="name">AIN_2</td><td class="note">Mayor impedancia</td></tr>
+<tr><td>CLT, temperatura del refrigerante</td><td><button type="button" class="pinlink f-in" data-pin="3" aria-label="Ver el pin 3 en la tabla">3</button></td><td class="name">AIN_3</td><td class="note">Pull-up a 5 V</td></tr>
+<tr><td>IAT, temperatura del aire de admisión</td><td><button type="button" class="pinlink f-in" data-pin="4" aria-label="Ver el pin 4 en la tabla">4</button></td><td class="name">AIN_4</td><td class="note">Pull-up a 5 V</td></tr>
+<tr><td>OTS, temperatura del aceite</td><td><button type="button" class="pinlink f-in" data-pin="29" aria-label="Ver el pin 29 en la tabla">29</button></td><td class="name">AIN_5</td><td class="note"></td></tr>
+<tr><td>TPS, posición del acelerador</td><td><button type="button" class="pinlink f-in" data-pin="30" aria-label="Ver el pin 30 en la tabla">30</button></td><td class="name">AIN_6</td><td class="note"></td></tr>
+<tr><td>OPS, presión del aceite</td><td><button type="button" class="pinlink f-in" data-pin="31" aria-label="Ver el pin 31 en la tabla">31</button></td><td class="name">AIN_7</td><td class="note"></td></tr>
+<tr><td>FPS, presión del combustible</td><td><button type="button" class="pinlink f-in" data-pin="32" aria-label="Ver el pin 32 en la tabla">32</button></td><td class="name">AIN_8</td><td class="note"></td></tr>
+<tr class="grp"><th scope="rowgroup" colspan="4">Captadores de reluctancia variable <span class="gsub">entrada diferencial</span></th></tr>
+<tr><td>Captador 1, positivo</td><td><button type="button" class="pinlink f-in" data-pin="6" aria-label="Ver el pin 6 en la tabla">6</button></td><td class="name">VR1+</td><td class="note">Trigger</td></tr>
+<tr><td>Captador 1, negativo</td><td><button type="button" class="pinlink f-in" data-pin="7" aria-label="Ver el pin 7 en la tabla">7</button></td><td class="name">VR1-</td><td class="note"></td></tr>
+<tr><td>Captador 2, positivo</td><td><button type="button" class="pinlink f-in" data-pin="33" aria-label="Ver el pin 33 en la tabla">33</button></td><td class="name">VR2+</td><td class="note">Trigger</td></tr>
+<tr><td>Captador 2, negativo</td><td><button type="button" class="pinlink f-in" data-pin="34" aria-label="Ver el pin 34 en la tabla">34</button></td><td class="name">VR2-</td><td class="note"></td></tr>
+<tr class="grp"><th scope="rowgroup" colspan="4">Entradas digitales <span class="gsub">0 a 5 V, nivel CMOS</span></th></tr>
+<tr><td>HALL1, sensor Hall activo 1</td><td><button type="button" class="pinlink f-in" data-pin="35" aria-label="Ver el pin 35 en la tabla">35</button></td><td class="name">DIN_2</td><td class="note"></td></tr>
+<tr><td>HALL2, sensor Hall activo 2</td><td><button type="button" class="pinlink f-in" data-pin="5" aria-label="Ver el pin 5 en la tabla">5</button></td><td class="name">DIN_3</td><td class="note"></td></tr>
+<tr><td>CLUTCH, señal del embrague</td><td><button type="button" class="pinlink f-in" data-pin="42" aria-label="Ver el pin 42 en la tabla">42</button></td><td class="name">DIN_1</td><td class="note"></td></tr>
+<tr class="grp"><th scope="rowgroup" colspan="4">Salidas de alta corriente <span class="gsub">hasta 19 A</span></th></tr>
+<tr><td>Boost, control de presión de turbo</td><td><button type="button" class="pinlink f-hc" data-pin="18" aria-label="Ver el pin 18 en la tabla">18</button></td><td class="name">HCLSO_3</td><td class="note">Con diodo</td></tr>
+<tr><td>Idle, control de ralentí</td><td><button type="button" class="pinlink f-hc" data-pin="19" aria-label="Ver el pin 19 en la tabla">19</button></td><td class="name">HCLSO_4</td><td class="note">Con diodo</td></tr>
+<tr><td>Calentador de la sonda lambda</td><td><button type="button" class="pinlink f-hc" data-pin="14" aria-label="Ver el pin 14 en la tabla">14</button></td><td class="name">LSU_HEATER</td><td class="note">Con diodo. Ver sonda lambda</td></tr>
+<tr><td>Sin función asignada en el manual</td><td><button type="button" class="pinlink f-hc" data-pin="16" aria-label="Ver el pin 16 en la tabla">16</button></td><td class="name">HCLSO_1</td><td class="note">Diodo Schottky</td></tr>
+<tr><td>Sin función asignada en el manual</td><td><button type="button" class="pinlink f-hc" data-pin="17" aria-label="Ver el pin 17 en la tabla">17</button></td><td class="name">HCLSO_2</td><td class="note">Diodo Schottky</td></tr>
+<tr class="grp"><th scope="rowgroup" colspan="4">Salidas de baja corriente <span class="gsub">hasta 2 A</span></th></tr>
+<tr><td>FAN, ventilador</td><td><button type="button" class="pinlink f-lc" data-pin="46" aria-label="Ver el pin 46 en la tabla">46</button></td><td class="name">LCLSO_1</td><td class="note"></td></tr>
+<tr><td>TACHO, señal del tacómetro</td><td><button type="button" class="pinlink f-lc" data-pin="47" aria-label="Ver el pin 47 en la tabla">47</button></td><td class="name">LCLSO_2</td><td class="note"></td></tr>
+<tr><td>FUEL, bomba de combustible</td><td><button type="button" class="pinlink f-lc" data-pin="45" aria-label="Ver el pin 45 en la tabla">45</button></td><td class="name">LCLSO_4</td><td class="note">Ver aviso sobre los pines 44 y 45</td></tr>
+<tr><td>LC1-DIG1, salida o señal digital</td><td><button type="button" class="pinlink f-lc" data-pin="44" aria-label="Ver el pin 44 en la tabla">44</button></td><td class="name">LCLSO_3</td><td class="note">Ver aviso sobre los pines 44 y 45</td></tr>
+<tr class="grp"><th scope="rowgroup" colspan="4">Motor paso a paso <span class="gsub">hasta 2 A, según los pines de la tabla</span></th></tr>
+<tr><td>Bobina 1, terminal A</td><td><button type="button" class="pinlink f-lc" data-pin="40" aria-label="Ver el pin 40 en la tabla">40</button></td><td class="name">STEP_1A</td><td class="note">Ver aviso sobre el stepper</td></tr>
+<tr><td>Bobina 1, terminal B</td><td><button type="button" class="pinlink f-lc" data-pin="12" aria-label="Ver el pin 12 en la tabla">12</button></td><td class="name">STEP_1B</td><td class="note"></td></tr>
+<tr><td>Bobina 2, terminal A</td><td><button type="button" class="pinlink f-lc" data-pin="13" aria-label="Ver el pin 13 en la tabla">13</button></td><td class="name">STEP_2A</td><td class="note">Ver aviso sobre el stepper</td></tr>
+<tr><td>Bobina 2, terminal B</td><td><button type="button" class="pinlink f-lc" data-pin="41" aria-label="Ver el pin 41 en la tabla">41</button></td><td class="name">STEP_2B</td><td class="note">Ver aviso sobre el stepper</td></tr>
+<tr class="grp"><th scope="rowgroup" colspan="4">Bus CAN</th></tr>
+<tr><td>CANL, línea baja</td><td><button type="button" class="pinlink f-ls" data-pin="8" aria-label="Ver el pin 8 en la tabla">8</button></td><td class="name">CANL</td><td class="note"></td></tr>
+<tr><td>CANH, línea alta</td><td><button type="button" class="pinlink f-ls" data-pin="36" aria-label="Ver el pin 36 en la tabla">36</button></td><td class="name">CANH</td><td class="note"></td></tr></tbody></table></div>
+
+    <h3 class="sub">Inyectores e ignitors por canal</h3>
+    <p class="intro">Cada canal reúne un inyector y un ignitor. Los canales 7 y 8 quedan separados de los seis primeros por una masa de potencia: el pin <button type="button" class="pinlink f-pw" data-pin="22" aria-label="Ver el pin 22 en la tabla">22</button> en los inyectores y el pin <button type="button" class="pinlink f-pw" data-pin="50" aria-label="Ver el pin 50 en la tabla">50</button> en los ignitors.</p>
+    <div class="table-wrap"><table class="t-ch plain"><thead><tr><th scope="col">Canal</th><th scope="col">Inyector, 19 A</th><th scope="col">Ignitor, 0,2 A</th></tr></thead><tbody><tr><td class="chan">1</td><td><button type="button" class="pinlink f-hc" data-pin="28" aria-label="Ver el pin 28 en la tabla">28</button> <span class="name">HCLSOI_1</span></td><td><button type="button" class="pinlink f-ig" data-pin="56" aria-label="Ver el pin 56 en la tabla">56</button> <span class="name">LCHSO_1</span></td></tr>
+<tr><td class="chan">2</td><td><button type="button" class="pinlink f-hc" data-pin="27" aria-label="Ver el pin 27 en la tabla">27</button> <span class="name">HCLSOI_2</span></td><td><button type="button" class="pinlink f-ig" data-pin="55" aria-label="Ver el pin 55 en la tabla">55</button> <span class="name">LCHSO_2</span></td></tr>
+<tr><td class="chan">3</td><td><button type="button" class="pinlink f-hc" data-pin="26" aria-label="Ver el pin 26 en la tabla">26</button> <span class="name">HCLSOI_3</span></td><td><button type="button" class="pinlink f-ig" data-pin="54" aria-label="Ver el pin 54 en la tabla">54</button> <span class="name">LCHSO_3</span></td></tr>
+<tr><td class="chan">4</td><td><button type="button" class="pinlink f-hc" data-pin="25" aria-label="Ver el pin 25 en la tabla">25</button> <span class="name">HCLSOI_4</span></td><td><button type="button" class="pinlink f-ig" data-pin="53" aria-label="Ver el pin 53 en la tabla">53</button> <span class="name">LCHSO_4</span></td></tr>
+<tr><td class="chan">5</td><td><button type="button" class="pinlink f-hc" data-pin="24" aria-label="Ver el pin 24 en la tabla">24</button> <span class="name">HCLSOI_5</span></td><td><button type="button" class="pinlink f-ig" data-pin="52" aria-label="Ver el pin 52 en la tabla">52</button> <span class="name">LCHSO_5</span></td></tr>
+<tr><td class="chan">6</td><td><button type="button" class="pinlink f-hc" data-pin="23" aria-label="Ver el pin 23 en la tabla">23</button> <span class="name">HCLSOI_6</span></td><td><button type="button" class="pinlink f-ig" data-pin="51" aria-label="Ver el pin 51 en la tabla">51</button> <span class="name">LCHSO_6</span></td></tr>
+<tr><td class="chan">7</td><td><button type="button" class="pinlink f-hc" data-pin="21" aria-label="Ver el pin 21 en la tabla">21</button> <span class="name">HCLSOI_7</span></td><td><button type="button" class="pinlink f-ig" data-pin="49" aria-label="Ver el pin 49 en la tabla">49</button> <span class="name">LCHSO_7</span></td></tr>
+<tr><td class="chan">8</td><td><button type="button" class="pinlink f-hc" data-pin="20" aria-label="Ver el pin 20 en la tabla">20</button> <span class="name">HCLSOI_8</span></td><td><button type="button" class="pinlink f-ig" data-pin="48" aria-label="Ver el pin 48 en la tabla">48</button> <span class="name">LCHSO_8</span></td></tr></tbody></table></div>
+    </div>
+  </details>
+
+  <details class="doc" id="lambda">
+    <summary><h2>Sonda lambda de banda ancha</h2><span class="meta">6 hilos</span><span class="chev" aria-hidden="true"></span></summary>
+    <div class="doc-body">
+    <p class="intro">La Easy 8 lleva el controlador de banda ancha integrado y lo regula con la tabla de AFR. La sonda se cablea con sus seis hilos de esta forma.</p>
+    <div class="table-wrap"><table class="t-sm plain"><thead><tr><th scope="col">Hilo de la sonda</th><th scope="col">Se conecta a</th><th scope="col">Nombre Easy 8</th><th scope="col">Nota</th></tr></thead><tbody><tr><td class="chan">1</td><td>Pin <button type="button" class="pinlink f-ls" data-pin="38" aria-label="Ver el pin 38 en la tabla">38</button></td><td class="name">LSU_IP</td><td class="note"></td></tr>
+<tr><td class="chan">2</td><td>Pin <button type="button" class="pinlink f-ls" data-pin="11" aria-label="Ver el pin 11 en la tabla">11</button></td><td class="name">LSU_VM</td><td class="note"></td></tr>
+<tr><td class="chan">3</td><td>Pin <button type="button" class="pinlink f-hc" data-pin="14" aria-label="Ver el pin 14 en la tabla">14</button></td><td class="name">LSU_HEATER</td><td class="note">Control del calentador</td></tr>
+<tr><td class="chan">4</td><td>+12 V</td><td class="name">–</td><td class="note">Positivo del calentador</td></tr>
+<tr><td class="chan">5</td><td>Pin <button type="button" class="pinlink f-ls" data-pin="10" aria-label="Ver el pin 10 en la tabla">10</button></td><td class="name">LSU_RTRIM</td><td class="note"></td></tr>
+<tr><td class="chan">6</td><td>Pin <button type="button" class="pinlink f-ls" data-pin="39" aria-label="Ver el pin 39 en la tabla">39</button></td><td class="name">LSU_UN</td><td class="note"></td></tr></tbody></table></div>
+    </div>
+  </details>
+
+  <details class="doc" id="alimentacion">
+    <summary><h2>Alimentación y masas</h2><span class="meta">6 pines</span><span class="chev" aria-hidden="true"></span></summary>
+    <div class="doc-body">
+    <p class="intro">Seis pines del conector son de alimentación o masa.</p>
+    <div class="table-wrap"><table class="t-sm plain"><thead><tr><th scope="col">Pin</th><th scope="col">Nombre Easy 8</th><th scope="col">Qué hace</th></tr></thead><tbody><tr><td><button type="button" class="pinlink f-pw" data-pin="15" aria-label="Ver el pin 15 en la tabla">15</button></td><td class="name">POWER IN</td><td>Entrada de alimentación de 12 V desde la batería. Hay que protegerla con un fusible externo.</td></tr>
+<tr><td><button type="button" class="pinlink f-pw" data-pin="9" aria-label="Ver el pin 9 en la tabla">9</button></td><td class="name">POWER OUT</td><td>Salida de 5 V para los sensores. Sale de un convertidor step-down de 3 A que también alimenta los circuitos digitales.</td></tr>
+<tr><td><button type="button" class="pinlink f-pw" data-pin="22" aria-label="Ver el pin 22 en la tabla">22</button></td><td class="name">POWER GND</td><td>Masa de potencia.</td></tr>
+<tr><td><button type="button" class="pinlink f-pw" data-pin="50" aria-label="Ver el pin 50 en la tabla">50</button></td><td class="name">POWER GND</td><td>Masa de potencia.</td></tr>
+<tr><td><button type="button" class="pinlink f-pw" data-pin="37" aria-label="Ver el pin 37 en la tabla">37</button></td><td class="name">SIGNAL GND</td><td>Masa de señal.</td></tr>
+<tr><td><button type="button" class="pinlink f-pw" data-pin="43" aria-label="Ver el pin 43 en la tabla">43</button></td><td class="name">IGNITORS TO 12V</td><td>Relacionado con la alimentación de los ignitors a 12 V. Ver aviso.</td></tr></tbody></table></div>
+    <ul class="facts">
+      <li>Los sensores analógicos, los captadores y los sensores Hall se alimentan con los 5 V de la ECU.</li>
+      <li>Los inyectores y el resto de cargas de alta corriente se alimentan con 12 V de la batería.</li>
+      <li>Los ignitors se pueden alimentar a 5 V o a 12 V, según el vehículo.</li>
+      <li>La tensión de 3,3 V la genera un regulador lineal de 1 A para el microprocesador. No sale al conector.</li>
+      <li>La masa de potencia (22 y 50) y la de señal (37) están separadas. Lo habitual es llevar los sensores a la de señal y las cargas a la de potencia.</li>
+    </ul>
+    </div>
+  </details>
+
+  <details class="doc" id="comprobar">
+    <summary><h2>A comprobar antes de cablear</h2><span class="meta meta-warn">4 avisos</span><span class="chev" aria-hidden="true"></span></summary>
+    <div class="doc-body">
+    <div class="warn">
+      <p>Al cruzar la tabla con el resto del manual aparecen estas diferencias. Verifícalas con el fabricante o midiendo antes de conectar nada.</p>
+      <ol>
+        <li><strong>Pines del stepper.</strong> La tabla pone STEP_1A en el 40, STEP_2A en el 13 y STEP_2B en el 41. El apartado del manual sobre el motor paso a paso los da como 41, 40 y 13. Solo STEP_1B, en el pin <button type="button" class="pinlink f-lc" data-pin="12" aria-label="Ver el pin 12 en la tabla">12</button>, coincide en los dos sitios. Esta página usa los pines de la tabla.</li>
+        <li><strong>Pines <button type="button" class="pinlink f-lc" data-pin="44" aria-label="Ver el pin 44 en la tabla">44</button> y <button type="button" class="pinlink f-lc" data-pin="45" aria-label="Ver el pin 45 en la tabla">45</button>.</strong> El manual los lista como entradas digitales (DIGI1 y DIGI2) y también como salidas (LC1-DIG1 y FUEL). La tabla los clasifica como salidas low-side de baja corriente, y las especificaciones hablan de solo tres entradas digitales, que son DIN_1, DIN_2 y DIN_3. Lo más probable es que sean salidas.</li>
+        <li><strong>Pines <button type="button" class="pinlink f-hc" data-pin="16" aria-label="Ver el pin 16 en la tabla">16</button> y <button type="button" class="pinlink f-hc" data-pin="17" aria-label="Ver el pin 17 en la tabla">17</button>.</strong> Son salidas de 19 A con diodo Schottky, pero ninguna función del manual los usa.</li>
+        <li><strong>Pin <button type="button" class="pinlink f-pw" data-pin="43" aria-label="Ver el pin 43 en la tabla">43</button>.</strong> El manual dice que la alimentación de los ignitors se elige con un pin específico, sin indicar cuál. Por su nombre, IGNITORS TO 12V, sería este, aunque el manual no lo confirma.</li>
+      </ol>
+    </div>
+    </div>
+  </details>
+
+  <footer class="foot">
+    <p>Guía de pinout independiente. No es la web oficial de Alana Electronics.</p>
+    <p>Datos tomados del manual de uso de la ECU Alana Easy 8 v1.0. Las explicaciones están resumidas y los límites de corriente son los que indica el manual. Comprueba siempre el conexionado antes de alimentar la ECU.</p>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  function all(sel) { return Array.prototype.slice.call(document.querySelectorAll(sel)); }
+  var rows = all("#rows tr");
+  var chips = all(".chip");
+  var docs = all("details.doc");
+  var input = document.getElementById("q");
+  var status = document.getElementById("status");
+  var empty = document.getElementById("empty");
+  var tabla = document.getElementById("tabla");
+  var total = rows.length;
+  var fam = "";
+
+  function apply() {
+    var q = input.value.trim().toLowerCase();
+    var shown = 0;
+    rows.forEach(function (tr) {
+      var ok = (!fam || tr.getAttribute("data-f") === fam) &&
+               (!q || tr.getAttribute("data-q").indexOf(q) !== -1);
+      tr.hidden = !ok;
+      if (ok) shown++;
+    });
+    status.textContent = "Mostrando " + shown + " de " + total + " pines";
+    empty.classList.toggle("show", shown === 0);
+  }
+  function setFam(f) {
+    fam = f;
+    chips.forEach(function (o) { o.setAttribute("aria-pressed", o.getAttribute("data-filter") === f ? "true" : "false"); });
+  }
+
+  chips.forEach(function (c) {
+    c.addEventListener("click", function () { setFam(c.getAttribute("data-filter")); apply(); });
+  });
+  input.addEventListener("input", apply);
+
+  var flashTimer = null;
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest ? e.target.closest(".pinlink") : null;
+    if (!b) return;
+    var tr = document.querySelector('#rows tr[data-pin="' + b.getAttribute("data-pin") + '"]');
+    if (!tr) return;
+    tabla.open = true;
+    setFam(""); input.value = ""; apply();
+    rows.forEach(function (r) { r.classList.remove("flash"); });
+    tr.classList.add("flash");
+    var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    tr.scrollIntoView({ block: "center", behavior: calm ? "auto" : "smooth" });
+    clearTimeout(flashTimer);
+    flashTimer = setTimeout(function () { tr.classList.remove("flash"); }, 2600);
+  });
+
+  function setAll(v) { docs.forEach(function (d) { d.open = v; }); }
+  document.getElementById("open-all").addEventListener("click", function () { setAll(true); });
+  document.getElementById("close-all").addEventListener("click", function () { setAll(false); });
+
+  all(".toc a").forEach(function (a) {
+    a.addEventListener("click", function () {
+      var d = document.getElementById(a.getAttribute("href").slice(1));
+      if (d) d.open = true;
+    });
+  });
+  function openFromHash() {
+    var d = location.hash ? document.getElementById(location.hash.slice(1)) : null;
+    if (d && d.tagName === "DETAILS") { d.open = true; d.scrollIntoView({ block: "start" }); }
+  }
+  window.addEventListener("hashchange", openFromHash);
+  openFromHash();
+
+  var before = null;
+  window.addEventListener("beforeprint", function () {
+    before = docs.map(function (d) { return d.open; });
+    setAll(true);
+  });
+  window.addEventListener("afterprint", function () {
+    if (!before) return;
+    docs.forEach(function (d, i) { d.open = before[i]; });
+    before = null;
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gunter443.github.io/alana-easy8/sitemap.xml
