@@ -3,13 +3,38 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ALANA ELECTRONICS Easy 8 · Guía de pinout del conector de 56 pines</title>
-<meta name="description" content="Guía de pinout del conector de 56 pines de la ECU ALANA ELECTRONICS Easy 8 v1.0: entradas, inyectores, ignitors, stepper, CAN, sonda lambda y alimentación, con explicaciones.">
+<title>ALANA ELECTRONICS Easy 8 (Easy8): pinout del conector de 56 pines</title>
+<meta name="description" content="Pinout de la ECU Alana Easy8 v1.0: qué hace cada pin del conector de 56 pines, inyectores, encendido, sensores, sonda lambda y CAN. Compatible con Speeduino.">
 <link rel="canonical" href="https://gunter443.github.io/GuiaWeb-alana-easy8/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_ES">
 <meta property="og:url" content="https://gunter443.github.io/GuiaWeb-alana-easy8/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ALANA ELECTRONICS Easy 8 · Guía de pinout del conector de 56 pines">
-<meta property="og:description" content="Guía de pinout del conector de 56 pines de la ECU ALANA ELECTRONICS Easy 8 v1.0: entradas, inyectores, ignitors, stepper, CAN, sonda lambda y alimentación, con explicaciones.">
+<meta property="og:title" content="ALANA ELECTRONICS Easy 8 (Easy8): pinout del conector de 56 pines">
+<meta property="og:description" content="Pinout de la ECU Alana Easy8 v1.0: qué hace cada pin del conector de 56 pines, inyectores, encendido, sensores, sonda lambda y CAN. Compatible con Speeduino.">
+<meta property="og:image" content="https://gunter443.github.io/GuiaWeb-alana-easy8/og-easy8.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="ALANA ELECTRONICS Easy 8: guía de pinout del conector de 56 pines">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "ALANA ELECTRONICS Easy 8 (Easy8): pinout del conector de 56 pines",
+  "description": "Pinout de la ECU Alana Easy8 v1.0: qué hace cada pin del conector de 56 pines, inyectores, encendido, sensores, sonda lambda y CAN. Compatible con Speeduino.",
+  "inLanguage": "es",
+  "url": "https://gunter443.github.io/GuiaWeb-alana-easy8/",
+  "image": "https://gunter443.github.io/GuiaWeb-alana-easy8/og-easy8.png",
+  "datePublished": "2026-11-09",
+  "dateModified": "2026-11-21",
+  "about": {
+    "@type": "Thing",
+    "name": "ECU Alana Easy8 v1.0",
+    "description": "ECU programable de Alana Electronics compatible con Speeduino"
+  },
+  "keywords": "Easy8, Easy 8, Alana Electronics, pinout, ECU programable, Speeduino, TunerStudio, conector 56 pines"
+}
+</script>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f3d2e'/%3E%3Crect x='3' y='3' width='26' height='26' rx='5' fill='none' stroke='%23d79a5c' stroke-width='1.5'/%3E%3Ctext x='16' y='21.5' font-family='Arial,Helvetica,sans-serif' font-size='13' font-weight='700' text-anchor='middle' fill='%23d79a5c'%3EE8%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -113,6 +138,14 @@ body {
 .hero-extra { margin: 0; font-size: 13px; color: var(--pcb-muted); }
 
 .wrap { max-width: 1040px; margin: 0 auto; padding: 20px 16px 56px; }
+.about { margin: 8px 0 28px; max-width: 74ch; }
+.about h2 { margin: 0 0 8px; font: 600 27px/1.1 var(--font-display); letter-spacing: .01em; }
+.about p { margin: 0 0 10px; }
+.about-specs { margin: 0; padding-left: 20px; color: var(--ink); }
+.about-specs li { margin-bottom: 4px; }
+.faq dt { margin: 18px 0 4px; font-weight: 600; }
+.faq dt:first-child { margin-top: 0; }
+.faq dd { margin: 0; max-width: 74ch; }
 .lead { margin: 0 0 16px; color: var(--muted); max-width: 66ch; }
 
 /* ---------- Barra de apartados ---------- */
@@ -308,7 +341,7 @@ tbody tr.grp:first-child th { border-top: 0; }
     color-scheme: light;
   }
   body { font-size: 10.5pt; }
-  .bar, .lead, .tools-sticky, .chev, .empty, .hero::before { display: none !important; }
+  .bar, .lead, .about, .tools-sticky, .chev, .empty, .hero::before { display: none !important; }
   .hero { background: none; color: #000; border-bottom: 2px solid #000; }
   .hero-in { padding: 0 0 12px; }
   .brand, .model, .hero-sub, .specs dd, .specs dt, .hero-extra { color: #000; }
@@ -328,7 +361,7 @@ tbody tr.grp:first-child th { border-top: 0; }
 <header class="hero">
   <div class="hero-in">
     <h1><span class="brand">ALANA ELECTRONICS</span><span class="model-row"><span class="model">Easy 8</span><span class="ver">ECU v1.0</span></span></h1>
-    <p class="hero-sub">Guía de pinout del conector de 56 pines</p>
+    <p class="hero-sub">Pinout y guía de conexionado del conector de 56 pines</p>
     <dl class="specs">
 <div><dt>Inyectores</dt><dd>8</dd></div>
 <div><dt>Ignitors</dt><dd>8</dd></div>
@@ -341,6 +374,18 @@ tbody tr.grp:first-child th { border-top: 0; }
 </header>
 
 <div class="wrap">
+  <section class="about" aria-labelledby="about-h">
+    <h2 id="about-h">Qué es la ECU Easy 8</h2>
+    <p>La Easy 8 de Alana Electronics (Easy8 en su manual) es una ECU programable para gestionar motores de hasta 8 cilindros. Es compatible con el firmware Speeduino y se configura con TunerStudio. Esta guía explica qué hace cada pin de su conector de 56 pines y cómo cablear los inyectores, el encendido, los sensores y la sonda lambda.</p>
+    <ul class="about-specs">
+      <li>Microcontrolador STM32 (ARM Cortex-M4, 32 bits), 1 MB de flash y 192 KB de RAM.</li>
+      <li>8 salidas low-side para inyectores, de hasta 19 A, y 8 salidas high-side para bobinas con ignitor integrado (smart coils).</li>
+      <li>8 entradas analógicas de 0 a 5 V, 3 entradas digitales y 2 entradas diferenciales para captadores de reluctancia variable.</li>
+      <li>Controlador de sonda lambda de banda ancha integrado, drive-by-wire y salidas para motor paso a paso.</li>
+      <li>CAN bus para comunicarse con otros equipos y USB para programarla y ajustarla en tiempo real.</li>
+    </ul>
+  </section>
+
   <p class="lead">Filtra por familia o busca por número, nombre o descripción. Pulsa el título de cada apartado para abrirlo o cerrarlo.</p>
 
   <nav class="bar" aria-label="Apartados">
@@ -350,6 +395,7 @@ tbody tr.grp:first-child th { border-top: 0; }
       <a href="#funciones">Qué hace cada pin</a>
       <a href="#lambda">Sonda lambda</a>
       <a href="#alimentacion">Alimentación y masas</a>
+      <a href="#preguntas">Preguntas frecuentes</a>
       <a href="#comprobar">A comprobar</a>
     </div>
     <div class="bar-actions">
@@ -583,6 +629,30 @@ tbody tr.grp:first-child th { border-top: 0; }
       <li>La tensión de 3,3 V la genera un regulador lineal de 1 A para el microprocesador. No sale al conector.</li>
       <li>La masa de potencia (22 y 50) y la de señal (37) están separadas. Lo habitual es llevar los sensores a la de señal y las cargas a la de potencia.</li>
     </ul>
+    </div>
+  </details>
+
+  <details class="doc" id="preguntas">
+    <summary><h2>Preguntas frecuentes</h2><span class="meta">8 preguntas</span><span class="chev" aria-hidden="true"></span></summary>
+    <div class="doc-body">
+    <dl class="faq">
+      <dt>¿Qué pines son los inyectores de la Easy 8?</dt>
+      <dd>Los inyectores 1 a 8 van en los pines 28, 27, 26, 25, 24, 23, 21 y 20, que corresponden a las salidas HCLSOI_1 a HCLSOI_8. Son salidas low-side de hasta 19 A sin diodo flyback.</dd>
+      <dt>¿Qué pines son las salidas de encendido (ignitors)?</dt>
+      <dd>Las bobinas 1 a 8 van en los pines 56, 55, 54, 53, 52, 51, 49 y 48 (salidas LCHSO_1 a LCHSO_8). Son salidas high-side de 0,2 A para bobinas con ignitor integrado, también llamadas smart coils.</dd>
+      <dt>¿Dónde se conecta el sensor de cigüeñal o de levas?</dt>
+      <dd>Los captadores de reluctancia variable (VR) se conectan a VR1+ y VR1− en los pines 6 y 7, y a VR2+ y VR2− en los pines 33 y 34. VR1+ y VR2+ figuran como Trigger. Los sensores Hall activos van a HALL1, en el pin 35, y a HALL2, en el pin 5.</dd>
+      <dt>¿Dónde van los sensores MAP, CLT, IAT y TPS?</dt>
+      <dd>MAP en el pin 2, CLT (temperatura del refrigerante) en el pin 3, IAT (temperatura del aire) en el pin 4 y TPS (acelerador) en el pin 30. La temperatura y la presión del aceite van en los pines 29 y 31, y la presión de combustible en el 32. Se alimentan con los 5 V del pin 9 y se llevan a la masa de señal del pin 37.</dd>
+      <dt>¿Cómo se conecta una sonda lambda de banda ancha?</dt>
+      <dd>La Easy 8 lleva el controlador integrado. Los seis hilos de la sonda van así: hilo 1 al pin 38, hilo 2 al pin 11, hilo 3 al pin 14 (control del calentador), hilo 4 a +12 V, hilo 5 al pin 10 y hilo 6 al pin 39.</dd>
+      <dt>¿Cómo se alimenta la ECU?</dt>
+      <dd>Los +12 V de la batería entran por el pin 15, protegidos con un fusible externo. Las masas de potencia son los pines 22 y 50, y la masa de señal es el pin 37.</dd>
+      <dt>¿Dónde se conectan el ventilador, la bomba de gasolina y el cuentavueltas?</dt>
+      <dd>El ventilador va en el pin 46, la bomba de combustible en el 45 y la señal del tacómetro en el 47. Son salidas de hasta 2 A. El control de boost y el de ralentí están en los pines 18 y 19.</dd>
+      <dt>¿Con qué programa se configura la Easy 8?</dt>
+      <dd>Con TunerStudio, conectando la ECU por USB. Es compatible con el firmware Speeduino.</dd>
+    </dl>
     </div>
   </details>
 
