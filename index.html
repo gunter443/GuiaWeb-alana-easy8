@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ALANA ELECTRONICS Easy 8 (Easy8): pinout del conector de 56 pines</title>
-<meta name="description" content="Pinout de la ECU Alana Easy8 v1.0: qué hace cada pin del conector de 56 pines, inyectores, encendido, sensores, sonda lambda y CAN. Compatible con Speeduino.">
+<meta name="description" content="Pinout de la ECU Alana Easy8 v1.0: qué hace cada pin del conector de 56 pines, inyectores, encendido, sensores, sonda lambda y CAN. Basada en rusEFI.">
 <link rel="canonical" href="https://gunter443.github.io/GuiaWeb-alana-easy8/">
 <meta property="og:type" content="article">
 <meta property="og:locale" content="es_ES">
 <meta property="og:url" content="https://gunter443.github.io/GuiaWeb-alana-easy8/">
 <meta property="og:title" content="ALANA ELECTRONICS Easy 8 (Easy8): pinout del conector de 56 pines">
-<meta property="og:description" content="Pinout de la ECU Alana Easy8 v1.0: qué hace cada pin del conector de 56 pines, inyectores, encendido, sensores, sonda lambda y CAN. Compatible con Speeduino.">
+<meta property="og:description" content="Pinout de la ECU Alana Easy8 v1.0: qué hace cada pin del conector de 56 pines, inyectores, encendido, sensores, sonda lambda y CAN. Basada en rusEFI.">
 <meta property="og:image" content="https://gunter443.github.io/GuiaWeb-alana-easy8/og-easy8.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -21,7 +21,7 @@
   "@context": "https://schema.org",
   "@type": "TechArticle",
   "headline": "ALANA ELECTRONICS Easy 8 (Easy8): pinout del conector de 56 pines",
-  "description": "Pinout de la ECU Alana Easy8 v1.0: qué hace cada pin del conector de 56 pines, inyectores, encendido, sensores, sonda lambda y CAN. Compatible con Speeduino.",
+  "description": "Pinout de la ECU Alana Easy8 v1.0: qué hace cada pin del conector de 56 pines, inyectores, encendido, sensores, sonda lambda y CAN. Basada en rusEFI.",
   "inLanguage": "es",
   "url": "https://gunter443.github.io/GuiaWeb-alana-easy8/",
   "image": "https://gunter443.github.io/GuiaWeb-alana-easy8/og-easy8.png",
@@ -30,9 +30,9 @@
   "about": {
     "@type": "Thing",
     "name": "ECU Alana Easy8 v1.0",
-    "description": "ECU programable de Alana Electronics compatible con Speeduino"
+    "description": "ECU programable de Alana Electronics basada en rusEFI"
   },
-  "keywords": "Easy8, Easy 8, Alana Electronics, pinout, ECU programable, Speeduino, TunerStudio, conector 56 pines"
+  "keywords": "Easy8, Easy 8, Alana Electronics, pinout, ECU programable, rusEFI, TunerStudio, conector 56 pines"
 }
 </script>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f3d2e'/%3E%3Crect x='3' y='3' width='26' height='26' rx='5' fill='none' stroke='%23d79a5c' stroke-width='1.5'/%3E%3Ctext x='16' y='21.5' font-family='Arial,Helvetica,sans-serif' font-size='13' font-weight='700' text-anchor='middle' fill='%23d79a5c'%3EE8%3C/text%3E%3C/svg%3E">
@@ -376,7 +376,7 @@ tbody tr.grp:first-child th { border-top: 0; }
 <div class="wrap">
   <section class="about" aria-labelledby="about-h">
     <h2 id="about-h">Qué es la ECU Easy 8</h2>
-    <p>La Easy 8 de Alana Electronics (Easy8 en su manual) es una ECU programable para gestionar motores de hasta 8 cilindros. Es compatible con el firmware Speeduino y se configura con TunerStudio. Esta guía explica qué hace cada pin de su conector de 56 pines y cómo cablear los inyectores, el encendido, los sensores y la sonda lambda.</p>
+    <p>La Easy 8 de Alana Electronics (Easy8 en su manual) es una ECU programable para gestionar motores de hasta 8 cilindros. Está basada en rusEFI, un firmware de gestión de motor de software libre parecido a Speeduino, y se configura con TunerStudio. Esta guía explica qué hace cada pin de su conector de 56 pines y cómo cablear los inyectores, el encendido, los sensores y la sonda lambda.</p>
     <ul class="about-specs">
       <li>Microcontrolador STM32 (ARM Cortex-M4, 32 bits), 1 MB de flash y 192 KB de RAM.</li>
       <li>8 salidas low-side para inyectores, de hasta 19 A, y 8 salidas high-side para bobinas con ignitor integrado (smart coils).</li>
@@ -651,7 +651,7 @@ tbody tr.grp:first-child th { border-top: 0; }
       <dt>¿Dónde se conectan el ventilador, la bomba de gasolina y el cuentavueltas?</dt>
       <dd>El ventilador va en el pin 46, la bomba de combustible en el 45 y la señal del tacómetro en el 47. Son salidas de hasta 2 A. El control de boost y el de ralentí están en los pines 18 y 19.</dd>
       <dt>¿Con qué programa se configura la Easy 8?</dt>
-      <dd>Con TunerStudio, conectando la ECU por USB. Es compatible con el firmware Speeduino.</dd>
+      <dd>Con TunerStudio, conectando la ECU por USB. La Easy 8 está basada en rusEFI, un firmware de gestión de motor de software libre, así que también se puede usar la consola de rusEFI.</dd>
     </dl>
     </div>
   </details>

@@ -1,6 +1,6 @@
 # ALANA ELECTRONICS Easy 8 (Easy8) · Guía de pinout
 
-Pinout y guía de conexionado del conector de 56 pines de la ECU programable Alana Easy8 v1.0, compatible con el firmware Speeduino y configurable con TunerStudio.
+Pinout y guía de conexionado del conector de 56 pines de la ECU programable Alana Easy8 v1.0, basada en el firmware libre rusEFI y configurable con TunerStudio.
 
 **Web:** https://gunter443.github.io/GuiaWeb-alana-easy8/
 
